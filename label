@@ -1,0 +1,23 @@
+#!/bin/bash
+
+BG_COLOR="#C0C0C0"
+FG_COLOR="#000000"
+BD_COLOR="#FAFAFA"
+
+LBL_TEXT="$1"
+WRD_TEXT=$(date '+%H:%M:%S')
+
+cat << EOF
+[
+	{
+		"full_text": " $LBL_TEXT ",
+		"color": "$FG_COLOR",
+		"background": "$BG_COLOR",
+		"border": "$BD_COLOR",
+		"border_top": 1,
+		"border_left": 1,
+		"border_bottom": 0,
+		"border_right": 0,
+	},
+]
+EOF

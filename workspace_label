@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ -z "$1" ]] || ! [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo "Error: Please provide a valid workspace number as a command-line argument." >&2
+    exit 1
+fi
+
+BG_COLOR="#C0C0C0"
+FG_COLOR="#000000"
+BD_COLOR="#FAFAFA"
+
+LBL_TEXT="$1"
+WRD_TEXT=$(date '+%H:%M:%S')
+ACTIVE_ID=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d\" -f2)
+
+if [[ "$LBL_TEXT" -eq "$ACTIVE_ID" ]]; then
+    	echo "[{\"full_text\": \"$LBL_TEXT\",\"color\": \"$FG_COLOR\",\"background\": \"$BG_COLOR\",\"border\": \"$BD_COLOR\",\"border_top\": 1,\"border_left\": 1,\"border_bottom\": 0,\"border_right\": 0,},]"
+else
+    	echo "[{\"full_text\": \"$LBL_TEXT\",\"color\": \"#ffffff\",\"background\": \"#808080\",\"border\": \"#808080\",\"border_top\": 1,\"border_left\": 1,\"border_bottom\": 0,\"border_right\": 0,},]"
+fi
