@@ -1,0 +1,76 @@
+separator_block_width=0
+separator=false
+color=#ffffff
+
+# [workspace_label1]
+# command=~/.config/i3blocks/scripts/workspace_label 1
+# min_width=18
+# align=center
+# interval=repeat
+# format=json
+# 
+# [workspace_label2]
+# command=~/.config/i3blocks/scripts/workspace_label 2
+# min_width=18
+# align=center
+# interval=repeat
+# format=json
+# 
+# [workspace_label3]
+# command=~/.config/i3blocks/scripts/workspace_label 3
+# min_width=18
+# align=center
+# interval=repeat
+# format=json
+# 
+# [left]
+# min_width=1341
+# align=left
+# color=#FFFFFF
+# command=echo -n " "; test $(($(date +%s) % 2)) -eq 0 && echo "" || echo ""
+# interval=once
+
+[battery-label]
+command=~/.config/i3blocks/scripts/label BATTERY
+interval=once
+format=json
+
+[battery]
+command=cat /sys/class/power_supply/BAT0/capacity | sed '$s/$/%/'
+align=center
+min_width=35
+interval=5
+
+[volume-label]
+command=~/.config/i3blocks/scripts/label VOLUME
+interval=once
+format=json
+
+[volume]
+command=pactl get-sink-volume @DEFAULT_SINK@ | grep 'Volume:' | awk '{print $5}'
+align=center
+min_width=35
+interval=1
+
+[time-label]
+command=~/.config/i3blocks/scripts/label TIME
+interval=once
+format=json
+
+[time]
+command=date '+%I:%M %p'
+align=center
+min_width=75
+interval=60
+
+[date-label]
+command=~/.config/i3blocks/scripts/label DATE
+interval=once
+separator_block_width=8
+format=json
+
+[date]
+command=date '+%a, %B %d'
+align=left
+min_width=135
+interval=3600
